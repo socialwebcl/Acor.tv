@@ -1,0 +1,977 @@
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (190.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (108.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateAdresses (20110124190652)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TABLE "adresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110124190652')
+Migrating to CreateHits (20110125185248)
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110125185248')
+Migrating to RemoveHitToHits (20110125190906)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TEMPORARY TABLE "altered_hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("hits")
+  [1m[36mSQL (0.2ms)[0m  [1mDROP TABLE "hits"[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE TABLE "hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("altered_hits")[0m
+  [1m[35mSQL (0.2ms)[0m  DROP TABLE "altered_hits"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110125190906')[0m
+Migrating to AddDataToHits (20110125191415)
+  [1m[35mSQL (0.6ms)[0m  ALTER TABLE "hits" ADD "ip" varchar(255)
+  [1m[36mSQL (0.3ms)[0m  [1mALTER TABLE "hits" ADD "referer" varchar(255)[0m
+  [1m[35mSQL (0.3ms)[0m  ALTER TABLE "hits" ADD "agent" varchar(255)
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110125191415')[0m
+Migrating to RemoveHitsToHits (20110126030027)
+  [1m[35mSQL (0.3ms)[0m  CREATE TEMPORARY TABLE "altered_hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime, "ip" varchar(255), "referer" varchar(255), "agent" varchar(255)) 
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("hits")[0m
+  [1m[35mSQL (0.2ms)[0m  DROP TABLE "hits"
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE TABLE "hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime, "ip" varchar(255), "referer" varchar(255), "agent" varchar(255)) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("altered_hits")
+  [1m[36mSQL (0.1ms)[0m  [1mDROP TABLE "altered_hits"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110126030027')
+Migrating to AddAdressIdToHits (20110126030843)
+  [1m[36mSQL (0.4ms)[0m  [1mALTER TABLE "hits" ADD "adress_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110126030843')
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("adresses")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("hits")[0m
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 15:52:19 -0400
+  Processing by AdressesController#new as HTML
+Rendered adresses/_form.html.erb (8.5ms)
+Rendered adresses/new.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 79ms (Views: 15.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 15:52:19 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (2.8ms)
+
+
+Started POST "/adresses" for 127.0.0.1 at 2011-05-30 15:52:39 -0400
+  Processing by AdressesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wdGqg9aG5yLOmba6l5Y2gH3VzUJv5E80UYlCM6HxOq4=", "adress"=>{"url"=>"http://www.google.cl"}, "commit"=>"Acortar"}
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "adresses" ("url", "created_at", "updated_at") VALUES ('http://www.google.cl', '2011-05-30 19:52:40.058750', '2011-05-30 19:52:40.058750')
+Rendered adresses/show.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 226ms (Views: 16.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 15:52:40 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (2.9ms)
+
+
+Started GET "/1" for 127.0.0.1 at 2011-05-30 15:52:45 -0400
+  Processing by AdressesController#redir as HTML
+  Parameters: {"encoded"=>"1"}
+  [1m[36mAdress Load (0.2ms)[0m  [1mSELECT "adresses".* FROM "adresses" WHERE ("adresses"."id" = 1) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "hits" ("created_at", "updated_at", "ip", "referer", "agent", "adress_id") VALUES ('2011-05-30 19:52:45.312622', '2011-05-30 19:52:45.312622', NULL, NULL, NULL, 1)
+Redirected to http://www.google.cl
+Completed 302 Found in 204ms
+
+
+Started POST "/adresses" for 127.0.0.1 at 2011-05-30 15:53:08 -0400
+  Processing by AdressesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wdGqg9aG5yLOmba6l5Y2gH3VzUJv5E80UYlCM6HxOq4=", "adress"=>{"url"=>"http://www.google.cl"}, "commit"=>"Acortar"}
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO "adresses" ("url", "created_at", "updated_at") VALUES ('http://www.google.cl', '2011-05-30 19:53:08.978366', '2011-05-30 19:53:08.978366')[0m
+Rendered adresses/show.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 167ms (Views: 18.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 15:53:09 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+
+
+Started GET "/2" for 127.0.0.1 at 2011-05-30 15:53:11 -0400
+  Processing by AdressesController#redir as HTML
+  Parameters: {"encoded"=>"2"}
+  [1m[35mAdress Load (0.2ms)[0m  SELECT "adresses".* FROM "adresses" WHERE ("adresses"."id" = 2) LIMIT 1
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "hits" ("created_at", "updated_at", "ip", "referer", "agent", "adress_id") VALUES ('2011-05-30 19:53:11.547292', '2011-05-30 19:53:11.547292', NULL, NULL, NULL, 2)[0m
+Redirected to http://www.google.cl
+Completed 302 Found in 176ms
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2011-05-30 15:59:28 -0400
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"index"}
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+Completed   in 7ms
+
+NoMethodError (undefined method `eq' for nil:NilClass):
+  app/controllers/users_controller.rb:16:in `show'
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.5ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.5ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2011-05-30 15:59:34 -0400
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+SQLite3::SQLException: no such table: users: SELECT "users".* FROM "users"
+Completed   in 8ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: users: SELECT "users".* FROM "users"):
+  app/controllers/users_controller.rb:5:in `index'
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (30.7ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.1ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (37.7ms)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateAdresses (20110124190652)
+Migrating to CreateHits (20110125185248)
+Migrating to RemoveHitToHits (20110125190906)
+Migrating to AddDataToHits (20110125191415)
+Migrating to RemoveHitsToHits (20110126030027)
+Migrating to AddAdressIdToHits (20110126030843)
+Migrating to CreateUsers (20110530195732)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar(255), "password" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110530195732')
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("adresses")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("hits")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("users")
+
+
+Started GET "/users/" for 127.0.0.1 at 2011-05-30 15:59:58 -0400
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Rendered users/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 13ms (Views: 6.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 15:59:59 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (3.0ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2011-05-30 16:00:04 -0400
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (6.4ms)
+Rendered users/new.html.erb within layouts/application (9.5ms)
+Completed 200 OK in 21ms (Views: 13.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:00:04 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateAdresses (20110124190652)
+Migrating to CreateHits (20110125185248)
+Migrating to RemoveHitToHits (20110125190906)
+Migrating to AddDataToHits (20110125191415)
+Migrating to RemoveHitsToHits (20110126030027)
+Migrating to AddAdressIdToHits (20110126030843)
+Migrating to CreateUsers (20110530195732)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("adresses")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("hits")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("users")
+
+
+Started GET "/users/new" for 127.0.0.1 at 2011-05-30 16:01:32 -0400
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (6.7ms)
+Rendered users/new.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 22ms (Views: 13.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:01:32 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateAdresses (20110124190652)
+Migrating to CreateHits (20110125185248)
+Migrating to RemoveHitToHits (20110125190906)
+Migrating to AddDataToHits (20110125191415)
+Migrating to RemoveHitsToHits (20110126030027)
+Migrating to AddAdressIdToHits (20110126030843)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("adresses")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("hits")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("users")
+
+
+Started GET "/users/new" for 127.0.0.1 at 2011-05-30 16:02:04 -0400
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (6.5ms)
+Rendered users/new.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 23ms (Views: 13.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:02:04 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2011-05-30 16:02:05 -0400
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (6.1ms)
+Rendered users/new.html.erb within layouts/application (9.4ms)
+Completed 200 OK in 22ms (Views: 13.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:02:06 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2011-05-30 16:02:19 -0400
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (35.3ms)
+Rendered users/new.html.erb within layouts/application (38.9ms)
+Completed 200 OK in 51ms (Views: 42.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:02:19 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateAdresses (20110124190652)
+Migrating to CreateHits (20110125185248)
+Migrating to RemoveHitToHits (20110125190906)
+Migrating to AddDataToHits (20110125191415)
+Migrating to RemoveHitsToHits (20110126030027)
+Migrating to AddAdressIdToHits (20110126030843)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("adresses")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("hits")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("users")
+
+
+Started GET "/users/new" for 127.0.0.1 at 2011-05-30 16:04:50 -0400
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (6.0ms)
+Rendered users/new.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 21ms (Views: 12.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:04:50 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2011-05-30 16:04:51 -0400
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (6.8ms)
+Rendered users/new.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 55ms (Views: 14.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:04:52 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (167.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (105.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateAdresses (20110124190652)
+  [1m[36mSQL (0.7ms)[0m  [1mCREATE TABLE "adresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110124190652')
+Migrating to CreateHits (20110125185248)
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE TABLE "hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110125185248')
+Migrating to RemoveHitToHits (20110125190906)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TEMPORARY TABLE "altered_hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("hits")
+  [1m[36mSQL (0.3ms)[0m  [1mDROP TABLE "hits"[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE TABLE "hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("altered_hits")[0m
+  [1m[35mSQL (0.2ms)[0m  DROP TABLE "altered_hits"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110125190906')[0m
+Migrating to AddDataToHits (20110125191415)
+  [1m[35mSQL (0.5ms)[0m  ALTER TABLE "hits" ADD "ip" varchar(255)
+  [1m[36mSQL (0.3ms)[0m  [1mALTER TABLE "hits" ADD "referer" varchar(255)[0m
+  [1m[35mSQL (0.3ms)[0m  ALTER TABLE "hits" ADD "agent" varchar(255)
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110125191415')[0m
+Migrating to RemoveHitsToHits (20110126030027)
+  [1m[35mSQL (1.4ms)[0m  CREATE TEMPORARY TABLE "altered_hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime, "ip" varchar(255), "referer" varchar(255), "agent" varchar(255)) 
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("hits")[0m
+  [1m[35mSQL (0.2ms)[0m  DROP TABLE "hits"
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE TABLE "hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime, "ip" varchar(255), "referer" varchar(255), "agent" varchar(255)) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("altered_hits")
+  [1m[36mSQL (0.1ms)[0m  [1mDROP TABLE "altered_hits"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110126030027')
+Migrating to AddAdressIdToHits (20110126030843)
+  [1m[36mSQL (0.5ms)[0m  [1mALTER TABLE "hits" ADD "adress_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110126030843')
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("adresses")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("hits")[0m
+
+
+Started GET "/users/new" for 127.0.0.1 at 2011-05-30 16:05:13 -0400
+  Processing by UsersController#new as HTML
+Completed   in 7ms
+
+ActiveRecord::StatementInvalid (Could not find table 'users'):
+  app/controllers/users_controller.rb:27:in `new'
+  app/controllers/users_controller.rb:27:in `new'
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.1ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.9ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2011-05-30 16:05:44 -0400
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+SQLite3::SQLException: no such table: users: SELECT "users".* FROM "users"
+Completed   in 7ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: users: SELECT "users".* FROM "users"):
+  app/controllers/users_controller.rb:5:in `index'
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.2ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateAdresses (20110124190652)
+Migrating to CreateHits (20110125185248)
+Migrating to RemoveHitToHits (20110125190906)
+Migrating to AddDataToHits (20110125191415)
+Migrating to RemoveHitsToHits (20110126030027)
+Migrating to AddAdressIdToHits (20110126030843)
+Migrating to DeviseCreateUsers (20110530204627)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(128) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("users")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("users")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_users_on_email')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110530204627')[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("adresses")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("hits")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("users")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_users_on_reset_password_token')
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_info('index_users_on_email')[0m
+
+
+Started GET "/users/" for 127.0.0.1 at 2011-05-30 16:50:25 -0400
+
+NoMethodError (undefined method `devise_for' for #<ActionDispatch::Routing::Mapper:0x00000002504928>):
+  config/routes.rb:2:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.6ms)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+
+
+Started GET "/users/" for 127.0.0.1 at 2011-05-30 16:50:41 -0400
+
+ActionController::RoutingError (uninitialized constant UsersController):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2011-05-30 16:50:43 -0400
+
+ActionController::RoutingError (uninitialized constant UsersController):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 16:50:50 -0400
+  Processing by AdressesController#new as HTML
+Rendered adresses/_form.html.erb (42.0ms)
+Rendered adresses/new.html.erb within layouts/application (45.3ms)
+Completed 200 OK in 99ms (Views: 58.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:50:50 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2011-05-30 16:50:53 -0400
+
+ActionController::RoutingError (uninitialized constant UsersController):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2011-05-30 16:51:42 -0400
+  Processing by Devise::RegistrationsController#new as HTML
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/devise-1.3.4/app/views/devise/shared/_links.erb (1.9ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/devise-1.3.4/app/views/devise/registrations/new.html.erb within layouts/application (22.5ms)
+Completed 200 OK in 95ms (Views: 43.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:51:43 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2011-05-30 16:54:18 -0400
+  Processing by Devise::RegistrationsController#new as HTML
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/devise-1.3.4/app/views/devise/shared/_links.erb (2.1ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/devise-1.3.4/app/views/devise/registrations/new.html.erb within layouts/application (51.0ms)
+Completed 200 OK in 71ms (Views: 55.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:54:18 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2011-05-30 16:54:23 -0400
+  Processing by Devise::SessionsController#new as HTML
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/devise-1.3.4/app/views/devise/shared/_links.erb (1.9ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/devise-1.3.4/app/views/devise/sessions/new.html.erb within layouts/application (48.8ms)
+Completed 200 OK in 97ms (Views: 73.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:54:23 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.5ms)
+
+
+Started GET "/users/add" for 127.0.0.1 at 2011-05-30 16:54:29 -0400
+
+ActionController::RoutingError (uninitialized constant UsersController):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2011-05-30 16:59:28 -0400
+  Processing by Devise::SessionsController#new as HTML
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/devise-1.3.4/app/views/devise/shared/_links.erb (1.9ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/devise-1.3.4/app/views/devise/sessions/new.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 37ms (Views: 13.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2011-05-30 16:59:37 -0400
+  Processing by Devise::RegistrationsController#new as HTML
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/devise-1.3.4/app/views/devise/shared/_links.erb (1.9ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/devise-1.3.4/app/views/devise/registrations/new.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 36ms (Views: 21.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 16:59:37 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2011-05-30 17:01:11 -0400
+  Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wdGqg9aG5yLOmba6l5Y2gH3VzUJv5E80UYlCM6HxOq4=", "user"=>{"email"=>"colombogk@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."email" = 'colombogk@gmail.com') LIMIT 1
+  [1m[36mAREL (0.4ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "sign_in_count", "current_sign_in_at", "last_sign_in_at", "current_sign_in_ip", "last_sign_in_ip", "created_at", "updated_at") VALUES ('colombogk@gmail.com', '$2a$10$fNyGRjTUT3Cs1VU7ei8R.epDAXLbUo1zJZxEjulScxM5gDs4NAXSC', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, '2011-05-30 21:01:11.437113', '2011-05-30 21:01:11.437113')[0m
+  [1m[35mAREL (0.4ms)[0m  UPDATE "users" SET "last_sign_in_at" = '2011-05-30 21:01:11.562080', "current_sign_in_at" = '2011-05-30 21:01:11.562080', "last_sign_in_ip" = '127.0.0.1', "current_sign_in_ip" = '127.0.0.1', "sign_in_count" = 1, "updated_at" = '2011-05-30 21:01:11.562745' WHERE ("users"."id" = 1)
+Completed   in 466ms
+
+NameError (undefined local variable or method `root_path' for #<Devise::RegistrationsController:0x0000000305f778>):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.7ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.8ms)
+
+
+Started GET "/on_air/1" for 127.0.0.1 at 2011-05-30 17:18:18 -0400
+
+ArgumentError (missing :action):
+  config/routes.rb:11:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.2ms)
+
+
+Started GET "/on_air/1" for 127.0.0.1 at 2011-05-30 17:18:20 -0400
+
+ActionController::RoutingError (No route matches "/on_air/1"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:18:23 -0400
+
+LoadError (Expected /home/colombo/socialweb/socialink/app/controllers/links_controller.rb to define LinksController):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (33.1ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (39.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:18:34 -0400
+
+LoadError (Expected /home/colombo/socialweb/socialink/app/controllers/links_controller.rb to define LinksController):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:18:57 -0400
+
+LoadError (Expected /home/colombo/socialweb/socialink/app/controllers/links_controller.rb to define LinksController):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:20:55 -0400
+  Processing by LinksController#new as HTML
+Completed   in 41ms
+
+ActiveRecord::StatementInvalid (Could not find table 'links'):
+  app/controllers/links_controller.rb:35:in `new'
+  app/controllers/links_controller.rb:35:in `new'
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.5ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.6ms)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (127.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (87.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateLinks (20110124190652)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TABLE "links" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110124190652')
+Migrating to CreateHits (20110125185248)
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110125185248')
+Migrating to RemoveHitToHits (20110125190906)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TEMPORARY TABLE "altered_hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("hits")
+  [1m[36mSQL (0.3ms)[0m  [1mDROP TABLE "hits"[0m
+  [1m[35mSQL (2.9ms)[0m  CREATE TABLE "hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("altered_hits")[0m
+  [1m[35mSQL (0.2ms)[0m  DROP TABLE "altered_hits"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110125190906')[0m
+Migrating to AddDataToHits (20110125191415)
+  [1m[35mSQL (0.3ms)[0m  ALTER TABLE "hits" ADD "ip" varchar(255)
+  [1m[36mSQL (0.2ms)[0m  [1mALTER TABLE "hits" ADD "referer" varchar(255)[0m
+  [1m[35mSQL (0.2ms)[0m  ALTER TABLE "hits" ADD "agent" varchar(255)
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110125191415')[0m
+Migrating to RemoveHitsToHits (20110126030027)
+  [1m[35mSQL (0.3ms)[0m  CREATE TEMPORARY TABLE "altered_hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hits" integer, "created_at" datetime, "updated_at" datetime, "ip" varchar(255), "referer" varchar(255), "agent" varchar(255)) 
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("hits")[0m
+  [1m[35mSQL (0.2ms)[0m  DROP TABLE "hits"
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE TABLE "hits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime, "ip" varchar(255), "referer" varchar(255), "agent" varchar(255)) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("altered_hits")
+  [1m[36mSQL (0.1ms)[0m  [1mDROP TABLE "altered_hits"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110126030027')
+Migrating to AddLinkIdToHits (20110126030843)
+  [1m[36mSQL (0.5ms)[0m  [1mALTER TABLE "hits" ADD "link_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110126030843')
+Migrating to DeviseCreateUsers (20110530204627)
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(128) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("users")
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("users")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_info('index_users_on_email')[0m
+  [1m[35mSQL (0.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110530204627')[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (1.5ms)[0m  [1mPRAGMA index_list("hits")[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("links")
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("users")[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_info('index_users_on_reset_password_token')
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_info('index_users_on_email')[0m
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:23:20 -0400
+  Processing by LinksController#new as HTML
+Rendered links/_form.html.erb (33.8ms)
+Rendered links/new.html.erb within layouts/application (35.4ms)
+Completed   in 52ms
+
+ActionView::Template::Error (undefined method `links_path' for #<#<Class:0x00000002c3f120>:0x00000002c34928>):
+    1: <%= form_for(@link, :remote => true, :html => {'data-type' => 'json'} ) do |f| %>
+    2:   <% if @link.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+  app/views/links/_form.html.erb:1:in `_app_views_links__form_html_erb___778443030976595016_23068020__4491370994531247642'
+  app/views/links/new.html.erb:10:in `_app_views_links_new_html_erb__420214671513004866_23150300_1685288627856453211'
+  app/controllers/links_controller.rb:37:in `new'
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.7ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:24:09 -0400
+
+SyntaxError (/home/colombo/socialweb/socialink/config/routes.rb:10: syntax error, unexpected tIDENTIFIER, expecting keyword_end
+  root :to=>"links#new" as :links_path
+                          ^):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:25:10 -0400
+
+SyntaxError (/home/colombo/socialweb/socialink/config/routes.rb:10: syntax error, unexpected ':', expecting keyword_end
+  root :to=>"links#new" :as => 'links_path'
+                         ^):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:25:24 -0400
+  Processing by LinksController#new as HTML
+Rendered links/_form.html.erb (14.8ms)
+Rendered links/new.html.erb within layouts/application (16.1ms)
+Completed   in 32ms
+
+ActionView::Template::Error (undefined method `links_path' for #<#<Class:0x00000002cd68b8>:0x00000002cd38c0>):
+    1: <%= form_for(@link, :remote => true, :html => {'data-type' => 'json'} ) do |f| %>
+    2:   <% if @link.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+  app/views/links/_form.html.erb:1:in `_app_views_links__form_html_erb___778443030976595016_23382200__4491370994531247642'
+  app/views/links/new.html.erb:10:in `_app_views_links_new_html_erb__420214671513004866_23429720_1685288627856453211'
+  app/controllers/links_controller.rb:37:in `new'
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.4ms)
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.9ms)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:34:17 -0400
+  Processing by LinksController#new as HTML
+Rendered links/_form.html.erb (5.8ms)
+Rendered links/new.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 60ms (Views: 13.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 17:34:17 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started POST "/links" for 127.0.0.1 at 2011-05-30 17:34:30 -0400
+  Processing by LinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wdGqg9aG5yLOmba6l5Y2gH3VzUJv5E80UYlCM6HxOq4=", "link"=>{"url"=>"http://www.google.cl"}, "commit"=>"Acortar"}
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "links" ("url", "created_at", "updated_at") VALUES ('http://www.google.cl', '2011-05-30 21:34:30.317691', '2011-05-30 21:34:30.317691')
+Rendered links/show.html.erb within layouts/application (48.5ms)
+Completed 200 OK in 202ms (Views: 55.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 17:34:30 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+
+
+Started POST "/links" for 127.0.0.1 at 2011-05-30 17:36:08 -0400
+  Processing by LinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wdGqg9aG5yLOmba6l5Y2gH3VzUJv5E80UYlCM6HxOq4=", "link"=>{"url"=>"http://www.google.cl"}, "commit"=>"Acortar"}
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "links" ("url", "created_at", "updated_at") VALUES ('http://www.google.cl', '2011-05-30 21:36:08.420478', '2011-05-30 21:36:08.420478')
+Rendered links/show.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 177ms (Views: 18.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 17:36:08 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:36:12 -0400
+  Processing by LinksController#new as HTML
+Rendered links/_form.html.erb (5.3ms)
+Rendered links/new.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 25ms (Views: 12.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/links" for 127.0.0.1 at 2011-05-30 17:36:32 -0400
+  Processing by LinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wdGqg9aG5yLOmba6l5Y2gH3VzUJv5E80UYlCM6HxOq4=", "link"=>{"url"=>"http://www.google.cl"}, "commit"=>"Acortar"}
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "links" ("url", "created_at", "updated_at") VALUES ('http://www.google.cl', '2011-05-30 21:36:32.512522', '2011-05-30 21:36:32.512522')
+Rendered links/show.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 200ms (Views: 56.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 17:36:32 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <top (required)> at /home/colombo/socialweb/socialink/config/environment.rb:8)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY users.id DESC LIMIT 1[0m
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:55:13 -0400
+  Processing by LinksController#new as HTML
+Rendered links/_form.html.erb (5.1ms)
+Rendered links/new.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 24ms (Views: 12.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-05-30 17:55:15 -0400
+  Processing by LinksController#new as HTML
+Rendered links/_form.html.erb (6.1ms)
+Rendered links/new.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 27ms (Views: 14.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/jquery_ujs.js" for 127.0.0.1 at 2011-05-30 17:55:15 -0400
+
+ActionController::RoutingError (No route matches "/javascripts/jquery_ujs.js"):
+  
+
+Rendered /home/colombo/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.4ms)
